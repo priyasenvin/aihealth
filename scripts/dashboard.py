@@ -61,10 +61,12 @@ if st.button("Predict Outcome"):
     }])
 
     # ---- Raw model predictions ----
+
     risk = clf_model.predict(df)[0]
     los_raw = float(reg_model.predict(df)[0])
 
     # ---------- Clinical Rule Engine ----------
+
     critical = (
         age >= 55 and sugar >= 160 and (has_htn == 1 or has_dia == 1)
     ) or (
@@ -72,6 +74,7 @@ if st.button("Predict Outcome"):
     )
 
     # ---------- Final Clinical Decision ----------
+
     if critical:
         risk = 1   # Critical / Readmitted
         los = max(los_raw, np.random.uniform(12,18))
@@ -88,6 +91,7 @@ if st.button("Predict Outcome"):
         los = los_raw
 
     # ---------- Display ----------
+    
     outcome = {0:"Deceased",1:"Critical / Readmitted",2:"Recovered"}
     st.success(f"Predicted Outcome: {outcome[risk]}")
     st.info(f"Estimated Length of Stay: {round(los,2)} days")

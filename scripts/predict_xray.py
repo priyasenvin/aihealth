@@ -15,9 +15,9 @@ def predict_xray(img_path):
     pred = model.predict(img)[0][0]
 
     if pred >= 0.5:
-        print("🦠 PNEUMONIA DETECTED")
+        print("PNEUMONIA DETECTED")
     else:
-        print("🫁 NORMAL LUNGS")
+        print("NORMAL LUNGS")
 
 if __name__ == "__main__":
     predict_xray(r"D:\final_project\data\chest_xray\chest_xray\test\NORMAL\IM-0001-0001.jpeg")
